@@ -1,0 +1,224 @@
+@import url(./styles/home.css);
+@import url(./styles/login.css);
+@import url(./styles/register.css);
+
+
+
+#root{
+  height: 100%;
+}
+body,html{
+  font-family: inter,Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.todo_main_conatiner{
+  text-align: center;
+  height: 100%;
+  background: #0d1d2d;
+}
+
+.navigation-header{
+  padding: 12px 25px;
+  background: black;
+  margin-bottom: 9px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ffffff29;
+}
+.navigation-header a {
+  text-decoration: none;
+}
+.app-name{
+  i{
+    font-size: 2em;
+    color: #38b1a5;
+  }
+  span{
+    padding-left: 15px;
+    font-size: 2em;
+    font-weight: bold;
+    font-family: inter;
+    background: linear-gradient(89deg, #228bdf, #28d0b1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+.user-details{
+  .user-icon{
+    font-size: 1.8em;
+    padding: 7px;
+    border: 1px solid #38b1a5;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    position: relative;
+    color: #2c978c;
+    cursor: pointer;
+  }
+  .user-detail-cont{
+    opacity: 0;
+    font-size: 0.5em;
+    position: absolute;
+    padding: 5px 10px;
+    background: aliceblue;
+    border-radius: 5px;
+    background: #1a3e5e;
+    color: whitesmoke;
+    width: 100px;
+    z-index: 2;
+    text-align: left;
+    transition: 0.4s ease-in-out;
+    right: -10px;
+    top: calc(100% + 3px);
+  }
+}
+.user-detail-cont div {
+  padding: 3px;
+  margin: 4px;
+  cursor: auto;
+}
+.user-detail-cont .logout{
+  cursor: pointer;
+}
+
+.user-detail-cont .logout:hover{
+  color: rgb(50 202 187);
+}
+.user-icon:hover .user-detail-cont{
+ opacity: 1;
+}
+
+.todo_main_conatiner h1{
+  font-size: 2.3em;
+  background: linear-gradient(89deg, #228bdf, #28d0b1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.todo_main_conatiner h1 span{
+    background: none;
+    background-clip: text;
+    -webkit-text-fill-color: aliceblue;
+    font-size: 0.9em;
+}
+
+.todo_input_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 10px 15px;
+  position: sticky;
+  top: 70;
+  background-color: #0d1d2d;
+} 
+
+input.todo_input {
+  font-size: 20px;
+  padding: 10px;
+  width: 400px;
+  border-radius: 25px;
+  outline: none;
+  border: 2px solid transparent;
+  padding-left: 16px;
+  transition: all .5s;
+  min-width: 150px;
+}
+
+
+.add_btn {
+  font-size: 20px;
+  background: linear-gradient(45deg, #1e5182, #6199cf);
+  border-radius: 50%;
+  display: flex;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  min-width: 45px;
+}
+button.todo_btn {
+  outline: none;
+  border: none;
+  color: white;
+  padding: 9px 15px;
+  border-radius: 3px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.update_btn{
+  background: linear-gradient(45deg, #167a3f, #1d9853);
+}
+
+.cancel_btn{
+  background: linear-gradient(45deg, #811f1f, #c52929);
+}
+
+.add_btn i{
+  transition: transform 0.35s;
+}
+
+.add_btn:hover i{
+  transform: rotate(90deg);
+}
+
+.todo-list-wrapper ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+.todo-list-wrapper {
+  max-width: 700px;
+  margin: 10px auto;
+  padding: 10px;
+}
+
+.todo_list_item {
+  padding: 12px;
+  background: #427aae47;
+  max-width: 550px;
+  margin: 20px auto;
+  border-radius: 5px;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 0px 3px #00000036;
+  border: 1px solid #ffffff0f;
+  animation: fade_in 0.3s ease-in-out;
+  color: aliceblue;
+}
+.focus_input{
+  border: 2px solid #2a73a7 !important;
+  box-shadow: 0 0 20px 7px #4d9aca73;
+}
+
+.todo_option_btns span{
+  margin-left: 25px;
+  cursor: pointer;
+}
+.todo_option_btns .todo_edit{
+  color: rgba(20, 141, 70, 0.8);
+}
+.todo_option_btns .todo_delete{
+  color: #c41414c4;
+}
+
+@keyframes fade_in{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
