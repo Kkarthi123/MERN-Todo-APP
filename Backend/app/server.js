@@ -129,7 +129,7 @@ app.post('/api/updatepProfile', async(req, res)=>{
 
 // --------------------------deployment------------------------------
 
-const __dirname1 = path.resolve("..");
+const __dirname1 = path.resolve();
 console.log(__dirname1)
 
 if (process.env.NODE_ENV === "production") {
