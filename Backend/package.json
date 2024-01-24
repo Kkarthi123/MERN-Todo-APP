@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon app/server.js"
+    "start": "nodemon app/server.js",
+    "build": "npm i"
   },
   "author": "karthi_KN",
   "license": "ISC",
