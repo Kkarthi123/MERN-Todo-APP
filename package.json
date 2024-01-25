@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon Backend/app/server.js",
-    "build": "npm i"
+    "build": "npm install && npm install --prefix Frontend && npm run build --prefix Frontend"
   },
   "author": "karthi_KN",
   "license": "ISC",
