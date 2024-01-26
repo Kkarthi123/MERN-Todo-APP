@@ -119,10 +119,10 @@ function FirstComponent() {
           <h1>Welcome<span>😊</span> {auth?.name}!</h1>
         </div>
         <div className='todo_conatiner_wrapper'>
-          <div className='todo_input_wrapper'>
+          <div className='todo_input_wrapper' style={isEditeMode ? {flexWrap:"wrap"} : {}}>
             <input placeholder='Enter Your Todo' onChange={(e) => { setInputData(e.target.value) }} onKeyDown={setListData} value={inputData} className='todo_input' />
             {
-              (isEditeMode) ? <><button className="todo_btn update_btn" onClick={() => updateData()}>Update</button><button className="todo_btn cancel_btn" onClick={cancelEditMode}>Cancel</button></> : <span className='add_btn' title='Add Todo' onClick={setListData} ><i className="fa-solid fa-plus"></i></span>
+              (isEditeMode) ? <div className='btn-wrapper'><button className="todo_btn update_btn" onClick={() => updateData()}>Update</button><button className="todo_btn cancel_btn" onClick={cancelEditMode}>Cancel</button></div> : <span className='add_btn' title='Add Todo' onClick={setListData} ><i className="fa-solid fa-plus"></i></span>
             }
           </div>
           <div className='todo-list-wrapper'>
