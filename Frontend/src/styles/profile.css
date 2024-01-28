@@ -1,0 +1,25 @@
+.user-profiler-cont {
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    overflow: hidden;
+
+    .input-field {
+        margin: 30px;
+
+        label{
+            color: #cecece;
+        }
+    }
+    
+    .input-field input{
+        width: 300px;
+        height: 30px;
+        font-size: 1.08em;
+    }
+    .auth-submit-btn input{
+        background: linear-gradient(89deg, #1b69a7, #1c9680);
+    }
+}

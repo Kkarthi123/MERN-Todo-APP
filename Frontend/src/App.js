@@ -6,10 +6,13 @@ import SignUp from './components/signup';
 import Notes from './components/notes';
 import AuthUi from './components/authUi';
 import {RequireAuth} from "./components/protectRoute";
+import Profile from "./components/profile";
+import Error from './components/error';
 
 
 
 function App() {
+  // let auth = JSON.parse(localStorage.getItem("authToken"));
   return (
      <>
       <BrowserRouter>
@@ -18,8 +21,15 @@ function App() {
             <Route index element={ <AuthUi/> } />
             <Route path="login" element={ <Login /> } />
             <Route path="register" element={ <SignUp/> } />
+            <Route path='*' element={<Error/>} />
           </Route>
-          <Route path="notes" element={ <RequireAuth component={<Notes/>}></RequireAuth> } />
+          <Route path='/user'>
+            <Route index  element={<Error/>}/>
+            <Route path="my-notes" element={ <RequireAuth  component={<Notes />}></RequireAuth> } />
+            <Route path="profile" element={ <RequireAuth component={<Profile />}></RequireAuth>} />
+            <Route path='*' element={<Error/>} />
+          </Route>
+          
         </Routes>
       </BrowserRouter>
      </>

@@ -31,10 +31,6 @@ form {
     outline: none;
 }
 
-.input-field input:focus{
-
-}
-
 .auth-submit-btn {
     text-align: center;
     padding: 20px 10px;
@@ -42,7 +38,7 @@ form {
 
 
 
-.auth-form .auth-submit-btn input{
+ :is(.auth-form, .user-profiler-cont) .auth-submit-btn input{
     border: none;
     padding: 10px 15px;
     border-radius: 25px;
@@ -55,13 +51,38 @@ form {
 
 }
 
-.form-error-msg{
-    color: red;
+.notify-message{
     padding-left: 20px;
-    background: #fed2d2;
+    
     padding: 10px;
     border-radius: 4px;
+    display: inline-block;
+    position: fixed;
+    right: -100%;
+    top: 90px;
+    pointer-events: none;
+    font-size: 1.1em;
+    animation: slide-left 0.5s ease-in-out both;
 }
+.form-error-msg{
+    color: red;
+    background: #fed2d2;
+}
+.form-success-msg{
+    color: #018218;
+    background: #91ffc1;
+}
+
+@keyframes slide-left{
+    0%{
+        right: -100%;
+    }
+    100%{
+        right: 5px;
+    }
+}
+
+
 .already-acc-dec{
     a{
         display: inline-block;

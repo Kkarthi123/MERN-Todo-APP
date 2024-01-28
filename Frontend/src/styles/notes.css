@@ -16,6 +16,7 @@
   }
   .navigation-header a {
     text-decoration: none;
+    color: inherit;
   }
 
 .app-name{
@@ -47,7 +48,6 @@
     }
     .user-detail-cont{
       opacity: 0;
-      font-size: 0.5em;
       position: absolute;
       padding: 5px 10px;
       background: aliceblue;
@@ -58,8 +58,11 @@
       z-index: 2;
       text-align: left;
       transition: 0.4s ease-in-out;
-      right: -10px;
+      right: 0px;
       top: calc(100% + 3px);
+    }
+    .user-icon-cont{
+      position: relative;
     }
   }
   .user-detail-cont div {
@@ -67,14 +70,14 @@
     margin: 4px;
     cursor: auto;
   }
-  .user-detail-cont .logout{
+  .user-detail-cont :is(.logout, .profile-page-link){
     cursor: pointer;
   }
   
-  .user-detail-cont .logout:hover{
+  .user-detail-cont :is(.logout, .profile-page-link):hover{
     color: rgb(50 202 187);
   }
-  .user-icon:hover .user-detail-cont{
+  .user-icon-cont:hover .user-detail-cont{
    opacity: 1;
   }
   

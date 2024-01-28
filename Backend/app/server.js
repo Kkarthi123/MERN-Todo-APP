@@ -19,10 +19,11 @@ app.use(cors())
 
 const PORT = process.env.PORT || 5000
 
+
+// new todo creation api
 app.post('/list', authHandler, async (req, res) => {
 
     const checkData = await todo.find({user: req.user._id});
-    console.log(req.user._id, checkData)
    
     if(checkData.length == 0){
         let data = new todo({
@@ -39,6 +40,7 @@ app.post('/list', authHandler, async (req, res) => {
     
 })
 
+// get all todo 
 app.get("/getList", authHandler ,async (req, res)=>{
     const data = await todo.find({user: req.user._id});
     if(data.length > 0){
@@ -49,19 +51,19 @@ app.get("/getList", authHandler ,async (req, res)=>{
     }
 });
 
-
+// delete todo
 app.post("/deleteList", authHandler, async (req, res)=>{
     const deleteItem = await todo.updateOne({user: req.user._id}, {$pull: {todo: req.body.todo}});
     res.send(deleteItem)
 });
 
-
+// update todo
 app.put('/updateItem', authHandler, async(req, res)=>{
     const updatedData = await todo.updateOne({user: req.user._id, todo: req.body.oldItem}, {$set: {"todo.$": req.body.newItem}});
     res.send(updatedData)
 })
 
-
+// register user
 app.post('/api/user/create',  async(req, res, next)=>{
     const { name, email, password } = req.body;
 
@@ -91,6 +93,7 @@ app.post('/api/user/create',  async(req, res, next)=>{
 
 })
 
+// login api
 app.post('/api/user/login', async(req, res)=>{
     let { email, password } = req.body;
 
@@ -113,17 +116,37 @@ app.post('/api/user/login', async(req, res)=>{
 
 })
 
-app.post('/api/updatepProfile', async(req, res)=>{
-    let {email, password} = req.body;
+// profile update api
+app.post('/api/updatepProfile', authHandler, async(req, res)=>{
+    let {name, email, password} = req.body;
 
-    if(password){
-        User.updateOne({email}, {password: password})
+    const user =await User.findById(req.user._id)
+    console.log(user,'userFound');
+
+    if(user){
+        user.name = name;
+        user.email = email;
+        if(password){
+            user.password = password;
+        }
+
+        const updatedUser = await user.save();
+
+        res.json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            token: generateToken(updatedUser._id)
+        })
     }
     else{
         res.status(400).json({
-            message: "provide password"
-        })
+            message: "Not abel to update profile"
+        });
     }
+
+    
+    
 })
 
 

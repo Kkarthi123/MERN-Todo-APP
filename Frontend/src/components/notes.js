@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios';
 import $ from 'jquery';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Nav from "./nav"
 
 
 
@@ -10,10 +11,13 @@ function FirstComponent() {
   const [inputData, setInputData] = useState('');
   const [list, setList] = useState([]);
   const [isEditeMode, setEditMode] = useState(false);
-  const welcomeTitle = useRef(["Welcome", "HI", "Hello"])
+  const editIndex = useRef('');
+  const [sucessMessage, setSuccessMessage] = useState(false);
+  const [notifyMessage, setNotifyMessage] = useState('');
 
-  let editIndex = useRef('');
-  let auth = JSON.parse(localStorage.getItem("authToken"));
+
+
+  const auth = JSON.parse(localStorage.getItem("authToken"));
 
   const config = {
     authorization: `Bearer ${auth?.token}`
@@ -78,7 +82,9 @@ function FirstComponent() {
     }, { headers: config})
     list.splice(editIndex.current, 1, inputData)
     setList(list)
-    cancelEditMode()
+    cancelEditMode();
+    setSuccessMessage(true)
+    messageHandler("Updated sucessfully")
   }
 
   function cancelEditMode() {
@@ -86,35 +92,21 @@ function FirstComponent() {
     setInputData('')
   }
 
-  const logOut = ()=>{
-    localStorage.clear("authToken");
-    navigate("/")
+  const messageHandler = (msg)=>{
+    setNotifyMessage(msg)
+    setTimeout(function(){
+      setNotifyMessage(null)
+    }, 2000)
   }
-    
 
     
 
     return (
 
       <div className='todo_main_conatiner'>
-        
-        <div className='navigation-header'>
-          <Link to="/notes">
-          <div className='app-name'>
-            <i className="fa-solid fa-clipboard-list"></i>
-            <span>To Do</span>
-           </div>
-          </Link>
-           <div className='user-details'>
-             <div className='user-icon'>
-               <i className="fa-solid fa-user"></i>
-               <div className='user-detail-cont'>
-                 <div className='username'>{auth?.name}</div>
-                 <div className='logout' onClick={logOut}>Log Out</div>
-               </div>
-             </div>
-           </div>
-        </div>
+        { notifyMessage && <div className={`notify-message ${sucessMessage? "form-success-msg": "form-error-msg"}`}>{notifyMessage}</div>}
+
+        <Nav auth={auth}/>
         <div className='welcome-header'>
           <h1>Welcome<span>😊</span> {auth?.name}!</h1>
         </div>

@@ -1,6 +1,7 @@
 @import url(./styles/home.css);
 @import url(./styles/authForm.css);
 @import url(./styles/notes.css);
+@import url(./styles/profile.css);
 
 #root{
   height: 100%;

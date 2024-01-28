@@ -10,7 +10,7 @@ const AuthUi = () => {
   useEffect(() => {
     let token = localStorage.getItem("authToken");
     if (token) {
-      navigate('/notes')
+      navigate('/user/my-notes')
     }
   }, [])
 

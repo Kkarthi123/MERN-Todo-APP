@@ -10,7 +10,7 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassWord] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState('');
+  const [notifyMessage, setNotifyMessage] = useState('');
 
   useEffect(()=>{
     let token = localStorage.getItem("authToken");
@@ -25,7 +25,7 @@ export default function Signup() {
     try{
       if(userName && email && password && confirmPassword){
         if(password !== confirmPassword){
-          errorMsgHandler("Password Doesn't match")
+          messageHandler("Password Doesn't match")
         }else{
           let {data} = await axios.post("/api/user/create",{
             name: userName,
@@ -38,25 +38,25 @@ export default function Signup() {
         }
       }
       else{
-        errorMsgHandler("Please fill all the fields")
+        messageHandler("Please fill all the fields")
       }
     }
     catch({response: {data}}){
-        errorMsgHandler(data.message)
+        messageHandler(data.message)
     }
   }
 
-  const errorMsgHandler = (msg)=>{
-    setErrorMessage(msg)
+  const messageHandler = (msg)=>{
+    setNotifyMessage(msg)
     setTimeout(function(){
-      setErrorMessage(null)
+      setNotifyMessage(null)
     }, 2000)
   }
 
 
   return (
     <div className='auth-form'>
-       { errorMessage && <div className='form-error-msg'>{errorMessage}</div>}
+       { notifyMessage && <div className='form-error-msg'>{notifyMessage}</div>}
       <form onSubmit={(e)=> registerUser(e)}>
         <div className='input-field'>
           <label htmlFor='name'>User Name</label>

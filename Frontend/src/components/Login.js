@@ -11,13 +11,14 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassWord] = useState("");
-  const [errorMessage, setErrorMessage] = useState('');
+  const [notifyMessage, setNotifyMessage] = useState('');
   const [login, setLogin] = useState(false)
 
   useEffect(()=>{
     let token = localStorage.getItem("authToken");
+    console.log("L")
     if(token){
-      navigate('/notes')
+      navigate('/user/my-notes')
     }
   }, [login])
 
@@ -36,27 +37,27 @@ export default function Login() {
         }
       }
       else {
-        errorMsgHandler("Please fill all the fields")
+        messageHandler("Please fill all the fields")
       }
     }
     catch({response: {data}}){
-      errorMsgHandler(data.message)
+      messageHandler(data.message)
     }
 
    
   }
 
-  const errorMsgHandler = (msg)=>{
-    setErrorMessage(msg)
+  const messageHandler = (msg)=>{
+    setNotifyMessage(msg)
     setTimeout(function(){
-      setErrorMessage(null)
+      setNotifyMessage(null)
     }, 2000)
   }
 
 
   return (
     <div className='auth-form'>
-      {errorMessage && <div className='form-error-msg'>{errorMessage}</div>}
+      {notifyMessage && <div className='notify-message form-error-msg'>{notifyMessage}</div>}
       <form onSubmit={(e) => signInUser(e)}>
         <div className='input-field'>
           <label htmlFor='email'>Email</label>
