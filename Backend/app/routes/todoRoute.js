@@ -5,7 +5,6 @@ const todo = require("../models/listModel")
 
 router.route("/getall").get(async (req, res)=>{
     let data = await todo.findOne();
-    console.log("kk")
     if(data){
         res.send(data.todo)
     }

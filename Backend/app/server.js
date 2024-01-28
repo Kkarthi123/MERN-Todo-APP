@@ -121,7 +121,6 @@ app.post('/api/updatepProfile', authHandler, async(req, res)=>{
     let {name, email, password} = req.body;
 
     const user =await User.findById(req.user._id)
-    console.log(user,'userFound');
 
     if(user){
         user.name = name;

@@ -16,7 +16,6 @@ export default function Login() {
 
   useEffect(()=>{
     let token = localStorage.getItem("authToken");
-    console.log("L")
     if(token){
       navigate('/user/my-notes')
     }
