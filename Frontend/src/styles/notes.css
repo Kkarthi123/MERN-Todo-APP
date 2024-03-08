@@ -212,7 +212,18 @@
   .todo_option_btns .todo_delete{
     color: #c41414c4;
   }
-  
+  .todo-no-data-msg{
+    font-size: 2em;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #6e8398;
+    i{
+      margin-right: 10px;
+      font-size: 1.5em;
+    }
+  }
   @keyframes fade_in{
     0%{
       opacity: 0;

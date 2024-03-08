@@ -15,6 +15,7 @@ function FirstComponent() {
   const editIndex = useRef('');
   const [sucessMessage, setSuccessMessage] = useState(false);
   const [notifyMessage, setNotifyMessage] = useState('');
+  const [placeholderBar, setplaceholderBar] = useState(true)
 
 
 
@@ -27,8 +28,13 @@ function FirstComponent() {
 
   useEffect(() => {
     async function fetchList() {
-      let allList = await axios.get("/getList", { headers: config});
-      setList(allList.data)
+      axios.get("/getList", { headers: config}).then((allList)=>{
+        setList(allList.data)
+        setTimeout(()=>{
+        setplaceholderBar(false)
+
+        },300)
+      });
     }
     if (!auth) {
       navigate('/')
@@ -45,10 +51,13 @@ function FirstComponent() {
         return
       }
 
+      
+
       axios.post('/list', {
         todo: inputData
       }, { headers: config}).then(() => {
-        setList([inputData, ...list])
+        setList([inputData, ...list]);
+       
       })
       setInputData('')
     }
@@ -59,7 +68,8 @@ function FirstComponent() {
       todo: item
     }, { headers: config}).then(() => {
       $('#todo-' + id).fadeOut(300, function () {
-        this.remove()
+        this.remove();
+        
       });
     })
   }
@@ -119,7 +129,9 @@ function FirstComponent() {
             }
           </div>
           <div className='todo-list-wrapper'>
-            <ul>
+            {
+              placeholderBar ? <PlaceHolder count={5}/> : 
+              <ul>
               { list.length > 0 ?
                 
                 list.map((item, idx) => {
@@ -128,9 +140,12 @@ function FirstComponent() {
                       <div className='todo_option_btns'><span className='todo_edit' title='Edit Todo' onClick={() => { editItem(item, idx) }}><i className="fa-solid fa-pen-to-square"></i></span> <span className='todo_delete' title='Delete Todo' onClick={(e) => { deleteItem(idx, item) }}><i className="fa-solid fa-trash"></i></span></div>
                     </li>
                   )
-                }) :  <PlaceHolder count={5}/>
+                }) :  <div className='todo-no-data-msg'> <i className="fa-regular fa-face-frown"></i> No Data Found!</div>
               }
             </ul>
+              
+            }
+            
           </div>
         </div>
       </div>
