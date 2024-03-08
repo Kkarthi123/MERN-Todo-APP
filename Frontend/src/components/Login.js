@@ -69,7 +69,7 @@ export default function Login() {
         <div className='auth-submit-btn'>
           <input type='submit' value='Sign In' />
         </div>
-      <div className='new-user-dec'>New User? <Link to="/register">Sign In</Link></div>
+      <div className='new-user-dec'>New User? <Link to="/register">Sign Up</Link></div>
 
       </form>
     </div>
