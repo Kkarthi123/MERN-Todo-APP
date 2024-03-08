@@ -3,6 +3,7 @@ import axios from 'axios';
 import $ from 'jquery';
 import { useNavigate } from 'react-router-dom';
 import Nav from "./nav"
+import PlaceHolder from './placeholder';
 
 
 
@@ -119,19 +120,22 @@ function FirstComponent() {
           </div>
           <div className='todo-list-wrapper'>
             <ul>
-              {
+              { list.length > 0 ?
+                
                 list.map((item, idx) => {
                   return (
                     <li className='todo_list_item' key={idx} id={`todo-${idx}`}> <span className='todo_name'>{item} </span>
                       <div className='todo_option_btns'><span className='todo_edit' title='Edit Todo' onClick={() => { editItem(item, idx) }}><i className="fa-solid fa-pen-to-square"></i></span> <span className='todo_delete' title='Delete Todo' onClick={(e) => { deleteItem(idx, item) }}><i className="fa-solid fa-trash"></i></span></div>
                     </li>
                   )
-                })
+                }) :  <PlaceHolder count={5}/>
               }
             </ul>
           </div>
         </div>
       </div>
+
+      
 
       
     );

@@ -2,6 +2,7 @@
 @import url(./styles/authForm.css);
 @import url(./styles/notes.css);
 @import url(./styles/profile.css);
+@import url(./styles/placeholder.css);
 
 #root{
   height: 100%;
